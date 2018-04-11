@@ -4,6 +4,7 @@
 
 import time
 import numpy as np
+# import pdb; pdb.set_trace()
 
 
 def bisection( one_d_fun, MIN, MAX, eps=1e-8, maximum_iterations=65536 ):
@@ -386,13 +387,13 @@ def objective_scalar_constraints( constraints, x, order=0 ):
         values.append(value)
         
         if order >= 1:
-            g = -1/constraint_value*constraint_gradient
+            g = -1/float(constraint_value)*constraint_gradient
             gradients.append(g)
             # gradient = ( TODO: gradient of -log( constraint ), evaluated at xx )
             # NOTE: constraint_value is the value of the constraint function at xx
             # NOTE: constraint_gradient is the gradient of the constraint function at xx
             if order == 2:
-                h = -1/constraint_value*constraint_hessian
+                h = -1/float(constraint_value) * constraint_hessian + 1/float(constraint_value)**2 * constraint_gradient * constraint_gradient.T
                 hessians.append(h)
                 # hessian = ( TODO: Hessian of -log( constraint ), evaluated at xx );
                 # NOTE: constraint_value is the value of the constraint function at xx
@@ -453,11 +454,11 @@ def log_barrier( func, constraints, initial_x, initial_t, mu, m, newton_eps=1e-5
         newton_iterations.append( len( newton_values ) )
        
         #if ( TODO: termination criterion ): break; end
-        if len(constraints)/t <= eps:
+        if m/t <= log_barrier_eps:
             break
 
         #t = ( TODO: update t )
-        t = t* (1+1/math.sqrt(len(constraints)))
+        t = t* mu
         
 
         iterations += 1

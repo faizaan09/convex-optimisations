@@ -6,7 +6,7 @@ import time
 import numpy as np
 import algorithms as alg
 import matplotlib.pyplot as plt
-import pdb; pdb.set_trace()
+# import pdb; pdb.set_trace()
 
 
 ###############################################################################
@@ -82,9 +82,9 @@ def main_quadratic2():
         ts.append( t )
         
         # Run the algorithms
-        x, values, runtimes, gd_xs = alg.gradient_descent( func, initial_x, eps, maximum_iterations, alg.backtracking )
+        x, values, runtimes, gd_xs = alg.gradient_descent( func, initial_x, eps, maximum_iterations, alg.backtracking_line_search )
         gd_iterations.append(len(values)-1)
-        x, values, runtimes, newton_xs = alg.newton( func, initial_x, eps, maximum_iterations, alg.backtracking )
+        x, values, runtimes, newton_xs = alg.newton( func, initial_x, eps, maximum_iterations, alg.backtracking_line_search )
         newton_iterations.append(len(values)-1) 
         
         t *= mu
@@ -129,7 +129,7 @@ def main_linear():
         
     initial_x = np.matrix('100.0; 100.0; 100.0; 100.0; 100.0')
     newton_eps = 1e-8
-    eps = 1e-4
+    eps = 1e-3
     maximum_iterations = 65536
     
     m = len( b );
@@ -146,7 +146,7 @@ def main_linear():
     
     while  mu <= upper_mu:
         mus.append(mu)
-        x, newton_iterations = alg.log_barrier( f, constraints, initial_x, initial_t, mu, m, newton_eps, eps, maximum_iterations, alg.backtracking )
+        x, newton_iterations = alg.log_barrier( f, constraints, initial_x, initial_t, mu, m, newton_eps, eps, maximum_iterations, alg.backtracking_line_search )
         iterations.append( np.sum( newton_iterations ) )
         mu *= delta_mu
      
@@ -291,4 +291,5 @@ def draw_contour( func, gd_xs, newton_xs, levels=np.arange(5, 1000, 10), x=np.ar
         if i < 10:
             input("Press Enter to continue...")
 
-main_quadratic()
+
+main_quadratic2()
