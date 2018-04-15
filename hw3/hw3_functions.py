@@ -292,4 +292,4 @@ def draw_contour( func, gd_xs, newton_xs, levels=np.arange(5, 1000, 10), x=np.ar
             input("Press Enter to continue...")
 
 
-main_quadratic2()
+main_linear()
