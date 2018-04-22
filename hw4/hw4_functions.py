@@ -8,7 +8,7 @@ import time
 import random
 import math
 
-import pdb; pdb.set_trace()
+# import pdb; pdb.set_trace()
 
 def svm_objective_function(w, features, labels, order):
     n=len(labels)
@@ -26,7 +26,7 @@ def svm_objective_function(w, features, labels, order):
         hinge_loss = hinge_loss.T.tolist()[0]
         all_subgradient_evals = - np.multiply(labels,features)
         
-        subgradient = np.sum(all_subgradient_evals[hinge_loss!=0,:],axis=1).T
+        subgradient = 1/n *np.sum(all_subgradient_evals[hinge_loss!=0,:],axis=1).T
         return (value, subgradient)
     else:
         raise ValueError("The argument \"order\" should be 0 or 1")
@@ -49,7 +49,7 @@ def svm_objective_function_stochastic(w, features, labels, order, minibatch_size
         hinge_loss = np.asarray(hinge_loss).squeeze()
         all_subgradient_evals = - np.asarray(np.multiply(labels,features))
         
-        subgradient = np.sum(all_subgradient_evals[hinge_loss!=0,:],axis=0)
+        subgradient = 1/minibatch_size* np.sum(all_subgradient_evals[hinge_loss!=0,:],axis=0)
 
         return (value, subgradient)
     else:
