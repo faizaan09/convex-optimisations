@@ -3,7 +3,7 @@ import hw4_functions as hw_func
 import algorithms as alg
 import matplotlib.pyplot as plt
 
-import pdb; pdb.set_trace()
+# import pdb; pdb.set_trace()
 data = np.loadtxt('HIGGS_subset.csv', delimiter=',')
 
 labels = np.asmatrix(2*data[:,0]-1).T

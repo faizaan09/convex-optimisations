@@ -491,7 +491,7 @@ def subgradient_descent( func, initial_x, maximum_iterations=65536, initial_step
         xs.append( x.copy() )
         
         # x = ( TODO: update of subgradient descent )
-        x = x - eta * gradient
+        x = x - eta * gradient.T
         
         
         iterations += 1
