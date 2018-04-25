@@ -491,11 +491,12 @@ def subgradient_descent( func, initial_x, maximum_iterations=65536, initial_step
         xs.append( x.copy() )
         
         # x = ( TODO: update of subgradient descent )
+        iterations += 1
+        eta = initial_stepsize/np.power(iterations,0.5)
+
         x = x - eta * gradient.T
         
         
-        iterations += 1
-        eta = initial_stepsize/np.power(iterations,0.5)
 
         if iterations >= maximum_iterations:
             break
