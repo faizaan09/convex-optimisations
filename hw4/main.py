@@ -25,17 +25,17 @@ initial_x=np.zeros((d,1))
 
 sgd_x, sgd_values, sgd_runtimes, sgd_xs = alg.subgradient_descent( func_stochastic, initial_x, max_iterations_sgd, 1)
 print('Solution found by stochastic subgradient descent', sgd_x)
-print('Objective function', func(sgd_x,0))
+print('Objective function', func(sgd_x,0)) # 0.8144200035391359
 sgd_values=[func(sgd_xs[i],0) for i in range(0,max_iterations_sgd,int(max_iterations_sgd/points_to_plot))]
 
 ada_x, ada_values, ada_runtimes, ada_xs = alg.adagrad( func_stochastic, initial_x, max_iterations_sgd, 1)
 print('Solution found by stochastic adagrad', ada_x)
-print('Objective function', func(ada_x,0))
+print('Objective function', func(ada_x,0)) # 0.8210954033966148
 ada_values=[func(ada_xs[i],0) for i in range(0,max_iterations_sgd,int(max_iterations_sgd/points_to_plot))]
 
 sd_x, sd_values, sd_runtimes, sd_xs = alg.subgradient_descent( func, initial_x, max_iterations_sd, 1)
 print('Solution found by subgradient descent', sd_x)
-print('Objective function', func(sd_x,0))
+print('Objective function', func(sd_x,0)) # 0.9125785012725371
 sd_values=[func(sd_xs[i],0) for i in range(0,max_iterations_sd,int(max_iterations_sd/points_to_plot))]
 
 #Obj func vs time
