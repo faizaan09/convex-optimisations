@@ -291,5 +291,9 @@ def draw_contour( func, gd_xs, newton_xs, levels=np.arange(5, 1000, 10), x=np.ar
         if i < 10:
             input("Press Enter to continue...")
 
+from datetime import datetime
+startTime = datetime.now()
 
 main_linear()
+
+print(datetime.now() - startTime)

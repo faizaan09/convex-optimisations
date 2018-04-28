@@ -453,12 +453,12 @@ def log_barrier( func, constraints, initial_x, initial_t, mu, m, newton_eps=1e-5
         x, newton_values, runtimes, xs = newton( newton_f, x, newton_eps, maximum_iterations, linesearch )
         newton_iterations.append( len( newton_values ) )
        
+        #t = ( TODO: update t )
+        t = t* mu
         #if ( TODO: termination criterion ): break; end
         if m/t <= log_barrier_eps:
             break
 
-        #t = ( TODO: update t )
-        t = t* mu
         
 
         iterations += 1
